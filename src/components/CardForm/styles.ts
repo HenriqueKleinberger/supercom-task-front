@@ -36,7 +36,7 @@ export const Form = styled.form`
   margin: 1rem;
 `;
 
-export const Row = styled.form`
+export const Row = styled.div`
   display: flex;
   justify-content: space-around;
 `;

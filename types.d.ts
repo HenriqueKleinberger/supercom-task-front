@@ -1,24 +1,12 @@
+import { TO_DO, DONE, IN_PROGRESS } from "./src/contants/status";
+
+export type Status = TO_DO | IN_PROGRESS | DONE;
+
 export type Card = {
   id: number;
   title: string;
   description: string;
-  deadline: Date;
+  deadline: string;
   createdAt?: Date;
-  status: string;
-};
-
-type Course = {
-  name: string;
-};
-
-export type PersonCourse = {
-  courseId: number;
-  hours: number;
-  referenceDate: date;
-  courseName: string;
-};
-
-export type GenericApiResponse<T> = {
-  totalData: number;
-  rows: T[];
+  status: Status;
 };

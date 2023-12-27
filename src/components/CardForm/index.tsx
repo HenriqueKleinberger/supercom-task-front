@@ -12,24 +12,28 @@ import { useState } from "react";
 import { Card } from "../../../types";
 import { DONE, IN_PROGRESS, TO_DO } from "../../contants/status";
 
+interface ICardFormProps {
+  save: (card: Card) => void;
+}
+
 const initialCard = {
   id: 0,
   title: "",
   description: "",
-  deadline: new Date(),
+  deadline: new Date().toISOString().slice(0, 10),
   status: TO_DO,
 };
 
-const CardForm = () => {
+const CardForm = ({ save }: ICardFormProps) => {
   const [card, setCard] = useState<Card>(initialCard);
 
-  const save = (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    // createCard(card);
+    save(card);
   };
 
   return (
-    <Form onSubmit={save}>
+    <Form onSubmit={submit}>
       <Row>
         <Field>
           <Label htmlFor="card-title">Title</Label>
@@ -47,10 +51,10 @@ const CardForm = () => {
             placeholder="DeadLine"
             type="date"
             id="card-deadline"
-            // value={card.deadline}
-            // onChange={(e) =>
-            //   setCard((state) => ({ ...state, deadline: e.target.value }))
-            // }
+            value={card.deadline}
+            onChange={(e) =>
+              setCard((state) => ({ ...state, deadline: e.target.value }))
+            }
           />
         </Field>
         <Field>

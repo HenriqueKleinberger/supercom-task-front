@@ -8,7 +8,6 @@ const CardView = ({ card }: CardProps) => {
   return (
     <Article>
       <p>{card.title}</p>
-      <p>{card.description}</p>
       {/* <p>{card.deadline?.getDate()}</p>
       <p>{card.createdAt?.getDate()}</p> */}
     </Article>
