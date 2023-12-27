@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Toaster } from "react-hot-toast";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home";
 import { Provider } from "react-redux";
@@ -16,6 +16,7 @@ function App() {
   return (
     <React.StrictMode>
       <Provider store={store}>
+        <Toaster />
         <RouterProvider router={router} />
       </Provider>
     </React.StrictMode>

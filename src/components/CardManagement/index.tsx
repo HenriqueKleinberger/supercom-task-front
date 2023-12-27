@@ -72,7 +72,7 @@ const CardManagement = () => {
           <Label htmlFor="card-deadline">Deadline</Label>
           <InputField
             placeholder="DeadLine"
-            name="deadLine"
+            name="deadline"
             type="date"
             id="card-deadline"
             value={card.deadline}
