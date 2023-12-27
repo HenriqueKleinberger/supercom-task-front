@@ -2,13 +2,11 @@ import { Card } from "../../../types";
 import { Wrapper } from "./styles";
 import { DONE, IN_PROGRESS, TO_DO } from "../../contants/status";
 import CardsType from "../CardsType";
+import { useFetchCardsQuery } from "../../features/cards/cards-api-slice";
 
-interface ICardsWrapperProps {
-  cards: Card[];
-}
-
-const CardsWrapper = ({ cards }: ICardsWrapperProps) => {
-  const types: Record<string, Card[]> = cards.reduce(
+const CardsWrapper = () => {
+  const { data = [] } = useFetchCardsQuery();
+  const types: Record<string, Card[]> = data.reduce(
     (acc: Record<string, Card[]>, curr) => {
       const status = curr.status;
       if (acc[status]) {

@@ -11,7 +11,7 @@ export const Article = styled.article`
   position: relative;
 `;
 
-export const Edit = styled.button`
+export const Details = styled.button`
   background-color: inherit;
   border-radius: 5px;
   border: 0.5px solid black;

@@ -25,8 +25,32 @@ export const cardsApiSlice = createApi({
         },
         invalidatesTags: [CARD_TAG],
       }),
+      deleteCard: builder.mutation<Card, number>({
+        query(id) {
+          return {
+            url: `/cards/${id}`,
+            method: "DELETE",
+          };
+        },
+        invalidatesTags: [CARD_TAG],
+      }),
+      putCard: builder.mutation<Card, Card>({
+        query({ id, ...body }) {
+          return {
+            url: `/cards/${id}`,
+            method: "PUT",
+            body,
+          };
+        },
+        invalidatesTags: [CARD_TAG],
+      }),
     };
   },
 });
 
-export const { useFetchCardsQuery, usePostCardMutation } = cardsApiSlice;
+export const {
+  useFetchCardsQuery,
+  usePostCardMutation,
+  useDeleteCardMutation,
+  usePutCardMutation,
+} = cardsApiSlice;

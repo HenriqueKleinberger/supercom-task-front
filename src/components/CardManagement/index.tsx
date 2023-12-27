@@ -8,29 +8,52 @@ import {
   Select,
 } from "./styles";
 import { Button } from "../../styles";
-import { useState } from "react";
+import { ChangeEvent } from "react";
 import { Card } from "../../../types";
 import { DONE, IN_PROGRESS, TO_DO } from "../../contants/status";
+import { initialCard } from "../../contants/initialCard";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { setCard, updateCard } from "../../features/cards/card-slice";
+import {
+  usePostCardMutation,
+  usePutCardMutation,
+} from "../../features/cards/cards-api-slice";
 
-interface ICardFormProps {
-  save: (card: Card) => void;
-  cancelCard: () => void;
-}
+const CardManagement = () => {
+  const card = useAppSelector((state) => state.card.value);
+  const dispatch = useAppDispatch();
+  const [postCard] = usePostCardMutation();
+  const [putCard] = usePutCardMutation();
 
-const initialCard = {
-  id: 0,
-  title: "",
-  description: "",
-  deadline: new Date().toISOString().slice(0, 10),
-  status: TO_DO,
-};
+  if (!card) {
+    const initializeCard = () => {
+      dispatch(setCard(initialCard));
+    };
 
-const CardForm = ({ save, cancelCard }: ICardFormProps) => {
-  const [card, setCard] = useState<Card>(initialCard);
+    return <Button onClick={initializeCard}>Create new card</Button>;
+  }
+
+  const cancelCard = () => {
+    dispatch(setCard(null));
+  };
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    save(card);
+
+    if (card.id === 0) {
+      postCard(card);
+    } else if (card.id) {
+      putCard(card);
+    }
+
+    dispatch(setCard(null));
+  };
+
+  const updateField = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const fieldName = e.target.name as Exclude<keyof Card, "id">;
+    dispatch(updateCard({ fieldName, fieldValue: e.target.value }));
   };
 
   return (
@@ -39,23 +62,21 @@ const CardForm = ({ save, cancelCard }: ICardFormProps) => {
         <Field>
           <Label htmlFor="card-title">Title</Label>
           <InputField
+            name="title"
             id="card-title"
             value={card.title}
-            onChange={(e) =>
-              setCard((state) => ({ ...state, title: e.target.value }))
-            }
+            onChange={updateField}
           />
         </Field>
         <Field>
           <Label htmlFor="card-deadline">Deadline</Label>
           <InputField
             placeholder="DeadLine"
+            name="deadLine"
             type="date"
             id="card-deadline"
             value={card.deadline}
-            onChange={(e) =>
-              setCard((state) => ({ ...state, deadline: e.target.value }))
-            }
+            onChange={updateField}
           />
         </Field>
         <Field>
@@ -64,9 +85,7 @@ const CardForm = ({ save, cancelCard }: ICardFormProps) => {
             name="status"
             id="card-status"
             value={card.status}
-            onChange={(e) =>
-              setCard((state) => ({ ...state, status: e.target.value }))
-            }
+            onChange={updateField}
           >
             <option value={TO_DO}>{TO_DO}</option>
             <option value={IN_PROGRESS}>{IN_PROGRESS}</option>
@@ -77,11 +96,10 @@ const CardForm = ({ save, cancelCard }: ICardFormProps) => {
       <Field>
         <TextArea
           value={card.description}
+          name="description"
           placeholder="Description"
           id="card-description"
-          onChange={(e) =>
-            setCard((state) => ({ ...state, description: e.target.value }))
-          }
+          onChange={updateField}
         />
       </Field>
       <Button type="submit">Save card</Button>
@@ -90,4 +108,4 @@ const CardForm = ({ save, cancelCard }: ICardFormProps) => {
   );
 };
 
-export default CardForm;
+export default CardManagement;

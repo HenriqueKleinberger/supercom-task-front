@@ -1,7 +1,5 @@
-import { CardLoadingStyle } from "./style";
-
 const CardLoading = () => {
-  return <CardLoadingStyle>Loading...</CardLoadingStyle>;
+  return <div>Loading...</div>;
 };
 
 export default CardLoading;
