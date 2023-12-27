@@ -9,8 +9,8 @@ import { Card } from "../../../types";
 
 const Home = () => {
   const [newCard, setNewCard] = useState(false);
-  const { data = [], isFetching } = useFetchCardsQuery();
-  const [postCard, { isLoading }] = usePostCardMutation();
+  const { data = [] } = useFetchCardsQuery();
+  const [postCard] = usePostCardMutation();
 
   const save = (card: Card) => {
     postCard(card);
