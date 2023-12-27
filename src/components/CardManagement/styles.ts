@@ -5,6 +5,7 @@ export const Field = styled.div`
 `;
 
 export const InitCardButton = styled.div`
+  margin: 10px;
   @media (max-width: 768px) {
     display: flex;
     justify-content: center;

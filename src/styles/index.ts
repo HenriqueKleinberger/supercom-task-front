@@ -27,7 +27,6 @@ export const Button = styled.button<IButtonProps>`
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
   color: #fff;
-  cursor: pointer;
   display: inline-block;
   font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
@@ -38,9 +37,9 @@ export const Button = styled.button<IButtonProps>`
   position: relative;
   text-align: center;
   text-decoration: none;
-  user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: middle;
   white-space: nowrap;
+  cursor: pointer;
 `;
