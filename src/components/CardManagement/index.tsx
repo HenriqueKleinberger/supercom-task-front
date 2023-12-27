@@ -7,6 +7,7 @@ import {
   Label,
   Select,
   Buttons,
+  InitCardButton,
 } from "./styles";
 import { Button } from "../../styles";
 import { ChangeEvent } from "react";
@@ -33,9 +34,11 @@ const CardManagement = () => {
     };
 
     return (
-      <Button $type={ACTION} onClick={initializeCard}>
-        Create new card
-      </Button>
+      <InitCardButton>
+        <Button $type={ACTION} onClick={initializeCard}>
+          Create new card
+        </Button>
+      </InitCardButton>
     );
   }
 

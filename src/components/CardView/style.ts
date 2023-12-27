@@ -9,6 +9,10 @@ export const Article = styled.article`
   height: 6rem;
   justify-content: space-between;
   position: relative;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const Details = styled.button`

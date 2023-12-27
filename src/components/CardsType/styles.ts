@@ -24,6 +24,11 @@ export const StatusWrapper = styled.div<IStatusProps>`
   background-color: ${({ $status }) =>
     labelColor[$status as keyof typeof labelColor]};
   margin: 10px;
+
+  @media (max-width: 768px) {
+    width: 80%;
+    margin: auto;
+  }
 `;
 
 export const Label = styled.h1`
