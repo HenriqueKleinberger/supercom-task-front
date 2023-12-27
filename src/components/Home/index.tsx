@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Wrapper } from "./styles";
+import { Button } from "../../styles";
 import CardForm from "../CardForm";
 import CardsWrapper from "../CardsWrapper";
 
@@ -8,15 +9,10 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <button onClick={() => setNewCard(true)}>Create new card</button>
-      {newCard && (
-        <CardForm
-          createCard={(e: React.FormEvent) => {
-            e.preventDefault();
-            console.log("salvar");
-            setNewCard(false);
-          }}
-        />
+      {newCard ? (
+        <CardForm />
+      ) : (
+        <Button onClick={() => setNewCard(true)}>Create new card</Button>
       )}
       <CardsWrapper />
     </Wrapper>

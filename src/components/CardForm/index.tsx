@@ -1,23 +1,86 @@
-interface TaskFormProps {
-  createCard: (e: React.FormEvent) => void;
-}
+import {
+  InputField,
+  Form,
+  TextArea,
+  Row,
+  Field,
+  Label,
+  Select,
+} from "./styles";
+import { Button } from "../../styles";
+import { useState } from "react";
+import { Card } from "../../../types";
+import { DONE, IN_PROGRESS, TO_DO } from "../../contants/status";
 
-const CardForm = ({ createCard }: TaskFormProps) => {
+const initialCard = {
+  id: 0,
+  title: "",
+  description: "",
+  deadline: new Date(),
+  status: TO_DO,
+};
+
+const CardForm = () => {
+  const [card, setCard] = useState<Card>(initialCard);
+
+  const save = (e: React.FormEvent) => {
+    e.preventDefault();
+    // createCard(card);
+  };
+
   return (
-    <form onSubmit={createCard}>
-      <input placeholder="Title" />
-      <input placeholder="Description" />
-
-      <input placeholder="DeadLine" type="date" />
-      <label htmlFor="status">Task status:</label>
-
-      <select name="status" id="status">
-        <option value="To Do">To Do</option>
-        <option value="In progress">In Progress</option>
-        <option value="Done">Done</option>
-      </select>
-      <button type="submit">Save task</button>
-    </form>
+    <Form onSubmit={save}>
+      <Row>
+        <Field>
+          <Label htmlFor="card-title">Title</Label>
+          <InputField
+            id="card-title"
+            value={card.title}
+            onChange={(e) =>
+              setCard((state) => ({ ...state, title: e.target.value }))
+            }
+          />
+        </Field>
+        <Field>
+          <Label htmlFor="card-deadline">Deadline</Label>
+          <InputField
+            placeholder="DeadLine"
+            type="date"
+            id="card-deadline"
+            // value={card.deadline}
+            // onChange={(e) =>
+            //   setCard((state) => ({ ...state, deadline: e.target.value }))
+            // }
+          />
+        </Field>
+        <Field>
+          <Label htmlFor="card-status">Task status:</Label>
+          <Select
+            name="status"
+            id="card-status"
+            value={card.status}
+            onChange={(e) =>
+              setCard((state) => ({ ...state, status: e.target.value }))
+            }
+          >
+            <option value={TO_DO}>{TO_DO}</option>
+            <option value={IN_PROGRESS}>{IN_PROGRESS}</option>
+            <option value={DONE}>{DONE}</option>
+          </Select>
+        </Field>
+      </Row>
+      <Field>
+        <TextArea
+          value={card.description}
+          placeholder="Description"
+          id="card-description"
+          onChange={(e) =>
+            setCard((state) => ({ ...state, description: e.target.value }))
+          }
+        />
+      </Field>
+      <Button type="submit">Save task</Button>
+    </Form>
   );
 };
 

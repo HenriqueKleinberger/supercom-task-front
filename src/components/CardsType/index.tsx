@@ -13,7 +13,7 @@ const CardsType = ({ label, cards = [] }: ICardsTypeProps) => {
       <Label>{label}</Label>
       <Cards>
         {cards.map((card) => (
-          <CardView card={card} />
+          <CardView key={card.id} card={card} />
         ))}
       </Cards>
     </Status>
