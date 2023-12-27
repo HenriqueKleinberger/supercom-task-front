@@ -1,6 +1,5 @@
 import { useState } from "react";
-// import { useAppDispatch, useAppSelector } from "../../app/hooks";
-// import { getCards } from "../../features/cards/cards-slice";
+import { Wrapper } from "./styles";
 import CardForm from "../CardForm";
 import CardsWrapper from "../CardsWrapper";
 
@@ -8,7 +7,7 @@ const Home = () => {
   const [newCard, setNewCard] = useState(false);
 
   return (
-    <>
+    <Wrapper>
       <button onClick={() => setNewCard(true)}>Create new card</button>
       {newCard && (
         <CardForm
@@ -20,7 +19,7 @@ const Home = () => {
         />
       )}
       <CardsWrapper />
-    </>
+    </Wrapper>
   );
 };
 

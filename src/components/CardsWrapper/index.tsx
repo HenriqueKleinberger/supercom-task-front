@@ -1,6 +1,8 @@
 import { useFetchCardsQuery } from "../../features/cards/cards-api-slice";
 import { Card } from "../../../types";
-import CardView from "../Card";
+import { Wrapper } from "./styles";
+import { DONE, IN_PROGRESS, TO_DO } from "../../contants/status";
+import CardsType from "../CardsType";
 const CardsWrapper = () => {
   const { data = [], isFetching } = useFetchCardsQuery();
   const types: Record<string, Card[]> = data.reduce(
@@ -15,20 +17,13 @@ const CardsWrapper = () => {
     },
     {}
   );
+
   return (
-    <div>
-      {Object.keys(types).map((status) => {
-        return (
-          <div>
-            <h1>{status}</h1>
-            {types[status].map((card) => (
-              <CardView card={card} />
-            ))}
-          </div>
-        );
-      })}
-      ;
-    </div>
+    <Wrapper>
+      <CardsType label={TO_DO} cards={types[TO_DO]} />
+      <CardsType label={IN_PROGRESS} cards={types[IN_PROGRESS]} />
+      <CardsType label={DONE} cards={types[DONE]} />
+    </Wrapper>
   );
 };
 
