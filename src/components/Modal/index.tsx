@@ -1,7 +1,7 @@
-import React from "react";
 import ReactModal from "react-modal";
 import { Button } from "../../styles";
 import { ACTION, CANCEL } from "../../contants/buttonTypes";
+import { Buttons, Message } from "./styles";
 
 interface IModalProps {
   isOpen: boolean;
@@ -26,13 +26,15 @@ const Modal = ({ isOpen, cancelAction, onAction, message }: IModalProps) => {
         },
       }}
     >
-      <p>{message}</p>
-      <Button $type={ACTION} onClick={onAction}>
-        Yes
-      </Button>
-      <Button $type={CANCEL} onClick={cancelAction}>
-        No
-      </Button>
+      <Message>{message}</Message>
+      <Buttons>
+        <Button $type={ACTION} onClick={onAction}>
+          Yes
+        </Button>
+        <Button $type={CANCEL} onClick={cancelAction}>
+          No
+        </Button>
+      </Buttons>
     </ReactModal>
   );
 };

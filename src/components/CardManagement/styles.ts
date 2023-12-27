@@ -21,6 +21,12 @@ export const Select = styled.select`
   font-size: 16px;
 `;
 
+export const Buttons = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+`;
+
 export const InputField = styled.input`
   width: 100%;
   height: 2rem;

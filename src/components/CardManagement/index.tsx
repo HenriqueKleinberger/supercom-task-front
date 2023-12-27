@@ -6,6 +6,7 @@ import {
   Field,
   Label,
   Select,
+  Buttons,
 } from "./styles";
 import { Button } from "../../styles";
 import { ChangeEvent } from "react";
@@ -107,12 +108,14 @@ const CardManagement = () => {
           onChange={updateField}
         />
       </Field>
-      <Button $type={ACTION} type="submit">
-        Save card
-      </Button>
-      <Button $type={CANCEL} onClick={cancelCard}>
-        Cancel card
-      </Button>
+      <Buttons>
+        <Button $type={ACTION} type="submit">
+          Save card
+        </Button>
+        <Button $type={CANCEL} onClick={cancelCard}>
+          Cancel card
+        </Button>
+      </Buttons>
     </Form>
   );
 };
