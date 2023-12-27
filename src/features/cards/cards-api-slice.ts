@@ -6,7 +6,7 @@ const CARD_TAG = "card_tag";
 export const cardsApiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://localhost:44376",
+    baseUrl: process.env.REACT_APP_BASE_API_URL,
   }),
   tagTypes: [CARD_TAG],
   endpoints(builder) {
