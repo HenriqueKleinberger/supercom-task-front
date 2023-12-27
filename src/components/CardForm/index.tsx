@@ -14,6 +14,7 @@ import { DONE, IN_PROGRESS, TO_DO } from "../../contants/status";
 
 interface ICardFormProps {
   save: (card: Card) => void;
+  cancelCard: () => void;
 }
 
 const initialCard = {
@@ -24,7 +25,7 @@ const initialCard = {
   status: TO_DO,
 };
 
-const CardForm = ({ save }: ICardFormProps) => {
+const CardForm = ({ save, cancelCard }: ICardFormProps) => {
   const [card, setCard] = useState<Card>(initialCard);
 
   const submit = (e: React.FormEvent) => {
@@ -83,7 +84,8 @@ const CardForm = ({ save }: ICardFormProps) => {
           }
         />
       </Field>
-      <Button type="submit">Save task</Button>
+      <Button type="submit">Save card</Button>
+      <Button onClick={cancelCard}>Cancel card</Button>
     </Form>
   );
 };

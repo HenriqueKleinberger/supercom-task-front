@@ -20,7 +20,7 @@ const Home = () => {
   return (
     <Wrapper>
       {newCard ? (
-        <CardForm save={save} />
+        <CardForm save={save} cancelCard={() => setNewCard(false)} />
       ) : (
         <Button onClick={() => setNewCard(true)}>Create new card</Button>
       )}
