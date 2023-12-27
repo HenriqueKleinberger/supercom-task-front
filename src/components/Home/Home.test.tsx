@@ -1,8 +1,8 @@
 import renderer from "react-test-renderer";
 import Home from "./";
 
-jest.mock("../CardsWrapper", () => "CardsWrapper");
-jest.mock("../CardManagement", () => "CardManagement");
+jest.mock("../CardsWrapper", () => () => "CardsWrapper");
+jest.mock("../CardManagement", () => () => "CardManagement");
 
 it("changes the class when hovered", () => {
   const component = renderer.create(<Home />);
