@@ -18,6 +18,7 @@ import {
   usePostCardMutation,
   usePutCardMutation,
 } from "../../features/cards/cards-api-slice";
+import { ACTION, CANCEL } from "../../contants/buttonTypes";
 
 const CardManagement = () => {
   const card = useAppSelector((state) => state.card.value);
@@ -30,7 +31,11 @@ const CardManagement = () => {
       dispatch(setCard(initialCard));
     };
 
-    return <Button onClick={initializeCard}>Create new card</Button>;
+    return (
+      <Button $type={ACTION} onClick={initializeCard}>
+        Create new card
+      </Button>
+    );
   }
 
   const cancelCard = () => {
@@ -102,8 +107,12 @@ const CardManagement = () => {
           onChange={updateField}
         />
       </Field>
-      <Button type="submit">Save card</Button>
-      <Button onClick={cancelCard}>Cancel card</Button>
+      <Button $type={ACTION} type="submit">
+        Save card
+      </Button>
+      <Button $type={CANCEL} onClick={cancelCard}>
+        Cancel card
+      </Button>
     </Form>
   );
 };

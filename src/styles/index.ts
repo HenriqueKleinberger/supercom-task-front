@@ -1,8 +1,28 @@
 import styled from "styled-components";
+import { ACTION, CANCEL } from "../contants/buttonTypes";
 
-export const Button = styled.button`
+interface IButtonProps {
+  $type?: string;
+}
+
+export const Button = styled.button<IButtonProps>`
   appearance: none;
-  background-color: #2ea44f;
+  ${({ $type }) =>
+    $type === ACTION &&
+    `
+      background-color: #2ea44f;
+      &:hover {
+        background-color: #2c974b;
+      }
+  `}
+  ${({ $type }) =>
+    $type === CANCEL &&
+    `
+      background-color: #8B0000;
+      &:hover {
+        background-color: #800000;
+      }
+  `}
   border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
@@ -24,8 +44,4 @@ export const Button = styled.button`
   touch-action: manipulation;
   vertical-align: middle;
   white-space: nowrap;
-
-  &:hover {
-    background-color: #2c974b;
-  }
 `;
