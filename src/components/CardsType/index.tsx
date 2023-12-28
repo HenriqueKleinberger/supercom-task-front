@@ -1,7 +1,7 @@
-import CardView from "../CardView";
 import { Card, Status } from "../../../types";
 import { Cards, StatusWrapper, Label } from "./styles";
 import { useFetchCardsQuery } from "../../features/cards/cards-api-slice";
+import CardView from "../CardView";
 import CardLoading from "../CardLoading";
 
 interface ICardsTypeProps {

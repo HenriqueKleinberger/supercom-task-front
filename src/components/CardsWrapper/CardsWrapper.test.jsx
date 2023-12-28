@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
-import CardsWrapper from "./";
+import CardsWrapper from ".";
 import configureStore from "redux-mock-store";
 import cardsMock, {
   doneCards,
@@ -20,7 +20,7 @@ const store = mockStore({
 });
 
 describe("CardsWrapper", () => {
-  test("renders CardsWrapper component", async () => {
+  test("renders CardsWrapper component calling the types with correct cards", async () => {
     require("../../features/cards/cards-api-slice").useFetchCardsQuery.mockReturnValue(
       {
         data: cardsMock,

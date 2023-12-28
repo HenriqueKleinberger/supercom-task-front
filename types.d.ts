@@ -7,6 +7,6 @@ export type Card = {
   title: string;
   description: string;
   deadline: string;
-  createdAt?: Date;
+  createdAt?: string;
   status: Status;
 };

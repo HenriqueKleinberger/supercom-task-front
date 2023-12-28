@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import {
   InputField,
   Form,
@@ -10,7 +11,6 @@ import {
   InitCardButton,
 } from "./styles";
 import { Button } from "../../styles";
-import { ChangeEvent } from "react";
 import { Card } from "../../../types";
 import { DONE, IN_PROGRESS, TO_DO } from "../../contants/status";
 import { initialCard } from "../../contants/initialCard";
@@ -35,7 +35,11 @@ const CardManagement = () => {
 
     return (
       <InitCardButton>
-        <Button $type={ACTION} onClick={initializeCard}>
+        <Button
+          data-testid="button-init-form"
+          $type={ACTION}
+          onClick={initializeCard}
+        >
           Create new card
         </Button>
       </InitCardButton>
@@ -66,7 +70,7 @@ const CardManagement = () => {
   };
 
   return (
-    <Form onSubmit={submit}>
+    <Form onSubmit={submit} data-testid="card-form">
       <Row>
         <Field>
           <Label htmlFor="card-title">Title</Label>
@@ -75,17 +79,19 @@ const CardManagement = () => {
             id="card-title"
             value={card.title}
             onChange={updateField}
+            data-testid="card-title"
           />
         </Field>
         <Field>
           <Label htmlFor="card-deadline">Deadline</Label>
           <InputField
-            placeholder="DeadLine"
+            placeholder="Deadline"
             name="deadline"
             type="date"
             id="card-deadline"
             value={card.deadline}
             onChange={updateField}
+            data-testid="card-deadline"
           />
         </Field>
         <Field>
@@ -95,6 +101,7 @@ const CardManagement = () => {
             id="card-status"
             value={card.status}
             onChange={updateField}
+            data-testid="card-status"
           >
             <option value={TO_DO}>{TO_DO}</option>
             <option value={IN_PROGRESS}>{IN_PROGRESS}</option>
@@ -109,6 +116,7 @@ const CardManagement = () => {
           placeholder="Description"
           id="card-description"
           onChange={updateField}
+          data-testid="card-description"
         />
       </Field>
       <Buttons>

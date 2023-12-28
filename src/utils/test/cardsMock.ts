@@ -1,6 +1,7 @@
+import { Card } from "../../../types";
 import { DONE, IN_PROGRESS, TO_DO } from "../../contants/status";
 
-export const toDoCards = [
+export const toDoCards: Card[] = [
   {
     id: 3,
     title: "Title 3",
@@ -11,7 +12,7 @@ export const toDoCards = [
   },
 ];
 
-export const inProgressCards = [
+export const inProgressCards: Card[] = [
   {
     id: 1,
     title: "Title 1",
@@ -22,7 +23,7 @@ export const inProgressCards = [
   },
 ];
 
-export const doneCards = [
+export const doneCards: Card[] = [
   {
     id: 2,
     title: "Title 2",
@@ -41,6 +42,6 @@ export const doneCards = [
   },
 ];
 
-const cardsMock = [...toDoCards, ...inProgressCards, ...doneCards];
+const cardsMock: Card[] = [...toDoCards, ...inProgressCards, ...doneCards];
 
 export default cardsMock;
